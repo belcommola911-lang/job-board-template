@@ -1,4 +1,5 @@
 import { brand } from '@/config/brand';
+import { indefinite } from '@/lib/utils/indefinite-article';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -228,7 +229,7 @@ export default async function ForJobSeekersPage() {
             {[
               { title: 'Remote / Telehealth', desc: 'Work from anywhere with telepsychiatry', href: '/jobs?mode=Remote', img: `${STORAGE_BASE}/storage/v1/object/public/site-assets/images/job-seekers/remote-telehealth.webp` },
               { title: 'In-Person Clinical', desc: 'Hospital, clinic, and outpatient roles', href: '/jobs?mode=In-Person', img: `${STORAGE_BASE}/storage/v1/object/public/site-assets/images/job-seekers/clinical-inperson.webp` },
-              { title: 'Private Practice', desc: `Start or join a ${brand.niche.adjective} practice`, href: '/resources/private-practice-guide', img: `${STORAGE_BASE}/storage/v1/object/public/site-assets/images/job-seekers/private-practice.webp` },
+              { title: 'Private Practice', desc: `Start or join ${indefinite(brand.niche.adjective)} practice`, href: '/resources/private-practice-guide', img: `${STORAGE_BASE}/storage/v1/object/public/site-assets/images/job-seekers/private-practice.webp` },
               { title: 'Part-Time / PRN', desc: 'Flexible schedules and per diem', href: '/jobs?jobType=Part-Time', img: `${STORAGE_BASE}/storage/v1/object/public/site-assets/images/job-seekers/parttime-prn.webp` },
             ].map(t => (
               <Link key={t.title} href={t.href} className="emp-bento-card" style={{

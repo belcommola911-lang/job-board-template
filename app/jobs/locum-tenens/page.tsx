@@ -1,4 +1,5 @@
 import { brand } from '@/config/brand';
+import { indefinite } from '@/lib/utils/indefinite-article';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -135,7 +136,7 @@ export default async function LocumTenensJobsPage({ searchParams }: PageProps) {
   const locumFaqs = [
     {
       question: `What is a locum tenens ${brand.niche.short}?`,
-      answer: `A locum tenens ${brand.niche.short} is a ${brand.niche.adjective} nurse practitioner who fills temporary staffing needs at healthcare facilities. Assignments typically last 2-13 weeks and include housing stipends, travel reimbursement, malpractice coverage, and premium hourly rates of $85-$150+.`
+      answer: `A locum tenens ${brand.niche.short} is ${indefinite(brand.niche.adjective)} nurse practitioner who fills temporary staffing needs at healthcare facilities. Assignments typically last 2-13 weeks and include housing stipends, travel reimbursement, malpractice coverage, and premium hourly rates of $85-$150+.`
     },
     {
       question: `How much do locum tenens ${brand.niche.adjective} nurse practitioners earn?`,

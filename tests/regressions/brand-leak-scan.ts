@@ -11,7 +11,8 @@
  *          leftover original-brand strings on a re-niched board.
  *
  *   2. `scanNicheCopyDebt` — occurrences of the template's REFERENCE-NICHE
- *      terms (PMHNP / psychiatric / mental health). Consumers:
+ *      terms (PMHNP / psychiatr* / psych / mental health / behavioral
+ *      health / nurse practitioner). Consumers:
  *        - tests/regressions/niche-copy-debt.test.ts — CI ratchet with its
  *          own baseline (niche-copy-debt-baseline.json).
  *        - scripts/fork-preflight.ts §5 — WARN-level debt report.
@@ -154,11 +155,24 @@ export function scanBrandLeaks(options: BrandLeakScanOptions): Record<string, nu
  * brand-leak patterns, these are not "must never appear" strings — they
  * track copy still WRITTEN FOR the reference niche rather than derived
  * from `brand.niche` tokens in config/brand.ts.
+ *
+ * Pattern notes:
+ *   - /psychiatr/ stems psychiatric, psychiatry, psychiatrist(s).
+ *   - /\bpsych\b/ catches the standalone colloquial form ('psych NP',
+ *     'psych eval') that the stem misses.
+ *   - /mental[- ]health/ covers both the spaced and hyphenated spellings.
+ *   - /nurse practitioner/ is a PROFESSION fragment, not a niche fragment:
+ *     it stays correct on any NP-family fork but must be rewritten by
+ *     non-NP forks (CRNA, PA, RN) — see the `niche` JSDoc in
+ *     config/brand.ts. Counting it makes that rewrite surface visible.
  */
 export const TEMPLATE_REFERENCE_NICHE_TERMS: ReadonlyArray<RegExp> = [
     /pmhnp/gi,
-    /psychiatric/gi,
-    /mental health/gi,
+    /psychiatr/gi,
+    /\bpsych\b/gi,
+    /mental[- ]health/gi,
+    /behavioral health/gi,
+    /nurse practitioner/gi,
 ];
 
 // Same exclusions as the brand scan, PLUS config/ — config/brand.ts and

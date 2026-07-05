@@ -1,4 +1,5 @@
 import { brand } from '@/config/brand';
+import { indefinite } from '@/lib/utils/indefinite-article';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Shield, MapPin, CheckCircle, AlertTriangle, XCircle } from 'lucide-react';
@@ -43,7 +44,7 @@ export default function FPAGuidePage() {
   const fpaFaqs = [
     {
       question: `What is Full Practice Authority for ${brand.niche.short}s?`,
-      answer: `Full Practice Authority (FPA) means a ${brand.niche.short} can evaluate patients, diagnose conditions, order and interpret tests, prescribe medications (including controlled substances), and manage treatment plans without physician oversight or a collaborative agreement. FPA states grant ${brand.niche.short}s the same level of autonomy as physicians in their scope of practice.`
+      answer: `Full Practice Authority (FPA) means ${indefinite(brand.niche.short)} can evaluate patients, diagnose conditions, order and interpret tests, prescribe medications (including controlled substances), and manage treatment plans without physician oversight or a collaborative agreement. FPA states grant ${brand.niche.short}s the same level of autonomy as physicians in their scope of practice.`
     },
     {
       question: "How many states have Full Practice Authority for nurse practitioners?",

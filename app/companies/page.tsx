@@ -1,4 +1,5 @@
 import { brand } from '@/config/brand';
+import { indefinite } from '@/lib/utils/indefinite-article';
 import { prisma } from '@/lib/prisma';
 import Link from 'next/link';
 import type { Metadata } from 'next';
@@ -145,7 +146,7 @@ export default async function CompaniesIndexPage() {
               a static directory.
             </p>
             <p style={{ marginBottom: '16px' }}>
-              When evaluating a {brand.niche.short} employer, the questions that matter most are
+              When evaluating {indefinite(brand.niche.short)} employer, the questions that matter most are
               practical: <strong>practice authority</strong> in the states they hire
               for (full vs. reduced vs. restricted, plus Nurse Licensure Compact
               membership), <strong>caseload structure</strong> (15-minute med checks

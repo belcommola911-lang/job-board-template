@@ -1,4 +1,5 @@
 import { brand } from '@/config/brand';
+import { Indefinite } from '@/lib/utils/indefinite-article';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -32,7 +33,7 @@ async function getStats() {
 }
 
 const faqs = [
-  { q: `What is a Travel ${brand.niche.short}?`, a: `A ${brand.niche.short} who takes temporary assignments (8-26 weeks) at healthcare facilities across the country through staffing agencies.` },
+  { q: `What is a Travel ${brand.niche.short}?`, a: `${Indefinite(brand.niche.short)} who takes temporary assignments (8-26 weeks) at healthcare facilities across the country through staffing agencies.` },
   { q: 'What is the pay like?', a: `Travel ${brand.niche.short}s earn 20-50% more than permanent roles, plus tax-free housing stipends, travel reimbursement, and completion bonuses.` },
   { q: 'Is housing provided?', a: 'Yes, most agencies offer furnished housing or generous housing stipends. Meals and incidental per diems are also common.' },
   { q: 'Do I need multi-state licenses?', a: 'You need licensure in each state you work in. Many agencies assist with licensure and the Nurse Licensure Compact helps.' },

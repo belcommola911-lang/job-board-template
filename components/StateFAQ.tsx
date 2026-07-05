@@ -9,6 +9,7 @@
 import StateFAQAccordion from './StateFAQAccordion';
 import { STATE_FAQ_NATIONAL_AVG_SALARY_TEXT } from '@/config/niche/stats';
 import { brand } from '@/config/brand';
+import { indefinite } from '@/lib/utils/indefinite-article';
 
 interface FAQItem {
     question: string;
@@ -51,7 +52,7 @@ function buildStateFaqs({
                     ? `${stateName} has reduced practice authority, requiring ${brand.niche.short}s to have a collaborative agreement with a physician. Requirements include an active RN license, completion of an accredited ${brand.niche.short} program, national certification, state APRN licensure, and a documented collaborative practice agreement.`
                     : practiceAuthority === 'restricted'
                         ? `${stateName} has restricted practice authority, requiring physician supervision for ${brand.niche.short}s. You'll need an active RN license, completion of an accredited ${brand.niche.short} program, national certification, state APRN licensure, and a formal supervisory agreement with a licensed physician.`
-                        : `To practice as a ${brand.niche.short} in ${stateName}, you'll typically need an active RN license, completion of an accredited ${brand.niche.short} graduate program, national certification through ANCC, and state APRN licensure. Contact the ${stateName} Board of Nursing for specific requirements.`,
+                        : `To practice as ${indefinite(brand.niche.short)} in ${stateName}, you'll typically need an active RN license, completion of an accredited ${brand.niche.short} graduate program, national certification through ANCC, and state APRN licensure. Contact the ${stateName} Board of Nursing for specific requirements.`,
         },
         {
             question: `Are there telehealth ${brand.niche.short} jobs in ${stateName}?`,

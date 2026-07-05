@@ -28,9 +28,16 @@ export const brand = {
      * string in app/, components/, and lib/ derives from these tokens —
      * page copy must never hardcode the niche name (the niche-copy debt
      * scanner tracks violations). Plurals derive as `${short}s`.
+     *
+     * The template's copy composes '<adjective> nurse practitioner' in
+     * roughly 50 places, so out-of-the-box these token values fit NP-family
+     * niches (PMHNP, FNP, AGNP, …). Non-NP professions (CRNA, PA, RN)
+     * additionally rewrite the profession words themselves — that surface
+     * is tracked by the debt scanner's 'nurse practitioner' pattern in
+     * tests/regressions/brand-leak-scan.ts.
      */
     niche: {
-        /** Credential/abbreviation: 'PMHNP', 'NP', 'CRNA'. */
+        /** Credential/abbreviation: 'PMHNP', 'NP'. */
         short: 'PMHNP',
         /** Mid-length label for titles/badges: 'Psychiatric NP', 'Family NP'. */
         medium: 'Psychiatric NP',

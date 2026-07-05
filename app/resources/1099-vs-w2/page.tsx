@@ -1,4 +1,5 @@
 import { brand } from '@/config/brand';
+import { indefinite } from '@/lib/utils/indefinite-article';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Scale, DollarSign, Calculator, CheckCircle, AlertTriangle, TrendingUp, Building2 } from 'lucide-react';
@@ -50,7 +51,7 @@ export default function CompensationGuidePage() {
       answer: `Generally, no. New grads benefit from W2 positions that offer mentorship, structured onboarding, employer-paid malpractice, and benefits. 1099 work requires clinical confidence and business management skills. Most ${brand.niche.short}s transition to 1099 after 2-3 years when they can command higher rates and handle the business aspects independently.`
     },
     {
-      question: `Can you do both 1099 and W2 as a ${brand.niche.short}?`,
+      question: `Can you do both 1099 and W2 as ${indefinite(brand.niche.short)}?`,
       answer: `Yes, many ${brand.niche.short}s work a W2 job for stability and benefits while taking 1099 side contracts for extra income. This 'hybrid' approach gives you employer benefits while earning premium 1099 rates for additional hours. Check your W2 employment contract for non-compete clauses or moonlighting restrictions.`
     },
     {

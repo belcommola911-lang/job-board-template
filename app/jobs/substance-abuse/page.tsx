@@ -1,4 +1,5 @@
 import { brand } from '@/config/brand';
+import { Indefinite } from '@/lib/utils/indefinite-article';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -64,7 +65,7 @@ async function getSubstanceAbuseStats() {
 
 
 const substanceFaqs = [
-  { question: `What is a Substance Abuse ${brand.niche.short}?`, answer: `A ${brand.niche.short} specializing in addiction treatment, including medication-assisted treatment (MAT), detox management, and dual-diagnosis care.` },
+  { question: `What is a Substance Abuse ${brand.niche.short}?`, answer: `${Indefinite(brand.niche.short)} specializing in addiction treatment, including medication-assisted treatment (MAT), detox management, and dual-diagnosis care.` },
   { question: 'What is MAT?', answer: 'Medication-Assisted Treatment uses FDA-approved medications like buprenorphine and naltrexone alongside counseling to treat opioid and alcohol use disorders.' },
   { question: 'What is the salary range?', answer: `Substance abuse ${brand.niche.short}s earn $130K-$180K, with MAT-certified providers commanding premium rates.` },
   { question: 'What certifications help?', answer: 'DEA registration, buprenorphine prescribing knowledge, and ASAM certification strengthen candidacy for addiction roles.' },

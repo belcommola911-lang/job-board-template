@@ -1,4 +1,5 @@
 import { brand } from '@/config/brand';
+import { indefinite } from '@/lib/utils/indefinite-article';
 import { LICENSE_GUIDE_SLUG_REGEX } from '@/config/niche/content-map';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
@@ -315,19 +316,19 @@ export default async function BlogPostPage({ params }: Props) {
     const blogFaqData: Record<string, Array<{ name: string; text: string }>> = {
         'how-to-become-a-pmhnp': [
             {
-                name: `How long does it take to become a ${brand.niche.short}?`,
+                name: `How long does it take to become ${indefinite(brand.niche.short)}?`,
                 text: `It typically takes 6-8 years total: 4 years for a BSN, 1-2 years of RN experience, and 2-3 years for an MSN or DNP with ${brand.niche.short} specialization.`,
             },
             {
-                name: `What degree do you need to be a ${brand.niche.short}?`,
-                text: `You need a Master of Science in Nursing (MSN) or Doctor of Nursing Practice (DNP) with a ${brand.niche.long} specialization from an accredited program. You must also pass the ${brand.niche.short} certification exam through ANCC.`,
+                name: `What degree do you need to be ${indefinite(brand.niche.short)}?`,
+                text: `You need a Master of Science in Nursing (MSN) or Doctor of Nursing Practice (DNP) with ${indefinite(brand.niche.long)} specialization from an accredited program. You must also pass the ${brand.niche.short} certification exam through ANCC.`,
             },
             {
-                name: `Can a ${brand.niche.short} prescribe medication?`,
+                name: `Can ${indefinite(brand.niche.short)} prescribe medication?`,
                 text: `Yes. ${brand.niche.short}s can prescribe psychiatric medications including antidepressants, antipsychotics, mood stabilizers, and controlled substances. Prescribing authority varies by state, with some states granting full practice authority and others requiring physician collaboration.`,
             },
             {
-                name: `What is the difference between a ${brand.niche.short} and a psychiatrist?`,
+                name: `What is the difference between ${indefinite(brand.niche.short)} and a psychiatrist?`,
                 text: `Both can diagnose and treat ${brand.niche.category} conditions and prescribe medications. Psychiatrists complete medical school (MD/DO) plus a 4-year residency. ${brand.niche.short}s complete nursing school plus a master's or doctoral nursing program. ${brand.niche.short}s typically spend more time on therapy and holistic care, while psychiatrists often focus on medication management.`,
             },
             {
@@ -351,7 +352,7 @@ export default async function BlogPostPage({ params }: Props) {
         ],
         'pmhnp-vs-psychiatrist': [
             {
-                name: `Can a ${brand.niche.short} do everything a psychiatrist can?`,
+                name: `Can ${indefinite(brand.niche.short)} do everything a psychiatrist can?`,
                 text: `${brand.niche.short}s can diagnose ${brand.niche.category} conditions, prescribe medications including controlled substances, and provide therapy. The main differences are in training path and, in some states, practice authority requirements. In full practice authority states, ${brand.niche.short}s operate independently.`,
             },
             {
@@ -359,7 +360,7 @@ export default async function BlogPostPage({ params }: Props) {
                 text: `No. Psychiatrists earn $250,000-$400,000+ annually while ${brand.niche.short}s earn $140,000-$175,000 on average. However, ${brand.niche.short}s require significantly less training time and student debt, often resulting in a better return on investment earlier in their career.`,
             },
             {
-                name: `Should I become a ${brand.niche.short} or psychiatrist?`,
+                name: `Should I become ${indefinite(brand.niche.short)} or psychiatrist?`,
                 text: `It depends on your goals. If you want a faster path to practice (6-8 years vs 12+ years), lower student debt, and a holistic nursing approach, ${brand.niche.short} is the better fit. If you want the highest salary ceiling and full medical training, psychiatry may be preferred.`,
             },
         ],
@@ -372,12 +373,12 @@ export default async function BlogPostPage({ params }: Props) {
         const stateName = stateNameRaw.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
         blogFaqData[slug] = [
             {
-                name: `How long does it take to get a ${brand.niche.short} license in ${stateName}?`,
+                name: `How long does it take to get ${indefinite(brand.niche.short)} license in ${stateName}?`,
                 text: `The timeline to obtain your ${brand.niche.short} license in ${stateName} typically takes 2-4 weeks after submitting a complete application, assuming you have already earned your MSN/DNP, passed the ANCC PMHNP-BC certification exam, and hold an active RN license. Processing times vary based on ${stateName}'s Board of Nursing workload.`,
             },
             {
-                name: `What are the requirements to become a ${brand.niche.short} in ${stateName}?`,
-                text: `To practice as a ${brand.niche.short} in ${stateName}, you need: (1) an active RN license, (2) a Master's or Doctoral degree in nursing with ${brand.niche.short} specialization from an accredited program, (3) national certification as a PMHNP-BC from ANCC, and (4) an APRN license from ${stateName}'s Board of Nursing. Prescriptive authority may require additional applications.`,
+                name: `What are the requirements to become ${indefinite(brand.niche.short)} in ${stateName}?`,
+                text: `To practice as ${indefinite(brand.niche.short)} in ${stateName}, you need: (1) an active RN license, (2) a Master's or Doctoral degree in nursing with ${brand.niche.short} specialization from an accredited program, (3) national certification as a PMHNP-BC from ANCC, and (4) an APRN license from ${stateName}'s Board of Nursing. Prescriptive authority may require additional applications.`,
             },
             {
                 name: `What is the average ${brand.niche.short} salary in ${stateName}?`,

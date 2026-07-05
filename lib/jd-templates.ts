@@ -23,6 +23,7 @@
  */
 
 import { brand } from '@/config/brand';
+import { indefinite } from '@/lib/utils/indefinite-article';
 
 export type JdTemplateCategory = 'outpatient' | 'inpatient' | 'telehealth' | 'specialty';
 
@@ -90,7 +91,7 @@ function buildTemplate(parts: {
   whyJoin: string;
 }): string {
   return [
-    `<h2>About {{employer}}</h2><p>{{employer}} is hiring a ${brand.niche.long} (${brand.niche.short}) in {{city}}, {{state}}. ${parts.aboutBlurb}</p>`,
+    `<h2>About {{employer}}</h2><p>{{employer}} is hiring ${indefinite(brand.niche.long)} (${brand.niche.short}) in {{city}}, {{state}}. ${parts.aboutBlurb}</p>`,
     `<h2>Position summary</h2><p>${parts.positionSummary}</p>`,
     `<h3>Key responsibilities</h3><ul>${parts.responsibilities.map((r) => `<li>${r}</li>`).join('')}</ul>`,
     REQUIRED_QUALS_BLOCK,
@@ -184,7 +185,7 @@ const OUTPATIENT_SUBSTANCE_USE_BODY = buildTemplate({
   aboutBlurb:
     `We are an outpatient practice specializing in substance use disorders and co-occurring ${brand.niche.adjective} conditions. We provide medication-assisted treatment (MAT) for opioid use disorder, alcohol use disorder, and other substance-related diagnoses.`,
   positionSummary:
-    `This is a ${brand.niche.short} role focused on MAT and dual-diagnosis care. You will manage buprenorphine, naltrexone, and acamprosate alongside ${brand.niche.adjective} medication management for co-occurring mood, anxiety, and trauma disorders.`,
+    `This is ${indefinite(brand.niche.short)} role focused on MAT and dual-diagnosis care. You will manage buprenorphine, naltrexone, and acamprosate alongside ${brand.niche.adjective} medication management for co-occurring mood, anxiety, and trauma disorders.`,
   responsibilities: [
     'Initiate and manage MAT (buprenorphine/naloxone, extended-release naltrexone, acamprosate, [specify])',
     `Conduct ${brand.niche.adjective} evaluations for co-occurring SUD and mental-health diagnoses`,
@@ -315,7 +316,7 @@ const FQHC_COMMUNITY_HEALTH_BODY = buildTemplate({
   aboutBlurb:
     'We are a Federally Qualified Health Center (FQHC) serving [rural / urban underserved / specify] patients. Our behavioral health team is integrated within primary care using a [collaborative care / co-located] model.',
   positionSummary:
-    `This is a ${brand.niche.short} role embedded in our primary-care team. You will see patients of all ages and acuity levels, with a strong emphasis on accessibility, harm reduction, and culturally responsive care.`,
+    `This is ${indefinite(brand.niche.short)} role embedded in our primary-care team. You will see patients of all ages and acuity levels, with a strong emphasis on accessibility, harm reduction, and culturally responsive care.`,
   responsibilities: [
     `Conduct ${brand.niche.adjective} evaluations for adults [and pediatrics — specify scope]`,
     'Provide warm hand-offs with primary-care providers',
@@ -365,7 +366,7 @@ const ECT_INTERVENTIONAL_BODY = buildTemplate({
   aboutBlurb:
     `We are an interventional psychiatry program offering ECT, TMS, [ketamine / esketamine / specify] alongside traditional ${brand.niche.adjective} care for treatment-resistant conditions.`,
   positionSummary:
-    `This is a ${brand.niche.short} role within our interventional psychiatry team. You will manage referrals, conduct pre- and post-treatment evaluations, and provide medication management for patients undergoing ECT, TMS, or [other modalities].`,
+    `This is ${indefinite(brand.niche.short)} role within our interventional psychiatry team. You will manage referrals, conduct pre- and post-treatment evaluations, and provide medication management for patients undergoing ECT, TMS, or [other modalities].`,
   responsibilities: [
     'Conduct pre-treatment evaluations for ECT/TMS candidates',
     'Manage psychotropic medications before, during, and after interventional treatment courses',

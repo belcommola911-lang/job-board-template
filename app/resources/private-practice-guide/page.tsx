@@ -1,4 +1,5 @@
 import { brand } from '@/config/brand';
+import { indefinite } from '@/lib/utils/indefinite-article';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Building2, DollarSign, FileText, CheckCircle, Shield, Users, BookOpen, Landmark } from 'lucide-react';
@@ -13,18 +14,18 @@ const LAST_REVIEWED = '2026-03-19';
 const HERO_IMAGE = `${STORAGE_BASE}/storage/v1/object/public/site-assets/images/pages/pmhnp-career-resources-guides.webp`;
 
 export const metadata: Metadata = {
-  title: `How to Start a ${brand.niche.short} Private Practice — Step-by-Step Guide 2026`,
+  title: `How to Start ${indefinite(brand.niche.short)} Private Practice — Step-by-Step Guide 2026`,
   description: `Complete guide to starting your own ${brand.niche.adjective} NP private practice. LLC formation, insurance credentialing (CAQH, NPI), EHR setup, malpractice insurance, billing, overhead costs, and income projections ($200K-$300K+).`,
   keywords: ['PMHNP private practice', 'how to start psychiatric NP private practice', 'PMHNP private practice income', 'psychiatric nurse practitioner own practice', 'PMHNP business startup', 'psych NP private practice'],
   openGraph: {
-    title: `How to Start a ${brand.niche.short} Private Practice — 2026 Guide`,
+    title: `How to Start ${indefinite(brand.niche.short)} Private Practice — 2026 Guide`,
     description: `Step-by-step guide to launching your own ${brand.niche.adjective} nurse practitioner private practice.`,
     type: 'article',
-    images: [{ url: HERO_IMAGE, width: 1280, height: 900, alt: `How to Start a ${brand.niche.short} Private Practice — 2026 Guide` }],
+    images: [{ url: HERO_IMAGE, width: 1280, height: 900, alt: `How to Start ${indefinite(brand.niche.short)} Private Practice — 2026 Guide` }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: `How to Start a ${brand.niche.short} Private Practice — 2026 Guide`,
+    title: `How to Start ${indefinite(brand.niche.short)} Private Practice — 2026 Guide`,
     images: [HERO_IMAGE],
   },
   alternates: { canonical: `${brand.baseUrl}/resources/private-practice-guide` },
@@ -107,11 +108,11 @@ export default function PrivatePracticeGuidePage() {
 
   const ppFaqs = [
     {
-      question: `How much does it cost to start a ${brand.niche.short} private practice?`,
+      question: `How much does it cost to start ${indefinite(brand.niche.short)} private practice?`,
       answer: `Startup costs range from $5,000-$20,000 for a lean telehealth practice to $30,000-$75,000 for a brick-and-mortar office. Core costs include PLLC formation ($100-500), EHR ($50-200/month), malpractice insurance ($1,500-3,000/year), credentialing fees, and marketing. Many ${brand.niche.short}s start with a virtual practice to minimize overhead.`
     },
     {
-      question: `How much can a ${brand.niche.short} private practice owner earn?`,
+      question: `How much can ${indefinite(brand.niche.short)} private practice owner earn?`,
       answer: `After building a full caseload (20-30 patients/week), private practice ${brand.niche.short}s typically earn $200,000-$300,000+ gross revenue. After overhead (25-40%), net income is $120,000-$225,000+. Top earners seeing 30+ patients/week with efficient overhead can net $250,000+. Telehealth practices generally have lower overhead (15-25%).`
     },
     {
@@ -158,7 +159,7 @@ export default function PrivatePracticeGuidePage() {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'Article',
-            headline: `How to Start a ${brand.niche.short} Private Practice — 2026 Step-by-Step Guide`,
+            headline: `How to Start ${indefinite(brand.niche.short)} Private Practice — 2026 Step-by-Step Guide`,
             description: `Complete guide to starting your own ${brand.niche.adjective} NP private practice — LLC formation, insurance credentialing, EHR setup, malpractice, billing, and income projections.`,
             datePublished: PUBLISHED_AT,
             dateModified: LAST_REVIEWED,
@@ -175,7 +176,7 @@ export default function PrivatePracticeGuidePage() {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'HowTo',
-            name: `How to Start a ${brand.niche.short} Private Practice`,
+            name: `How to Start ${indefinite(brand.niche.short)} Private Practice`,
             description: `Step-by-step guide to launching your own ${brand.niche.adjective} nurse practitioner private practice.`,
             step: steps.map((s) => ({
               '@type': 'HowToStep',
@@ -195,7 +196,7 @@ export default function PrivatePracticeGuidePage() {
               <Building2 className="w-8 h-8" />
             </div>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-              How to Start a {brand.niche.short} Private Practice
+              How to Start {indefinite(brand.niche.short)} Private Practice
             </h1>
             <p className="text-sm text-teal-200 text-center mt-2 mb-4">
               Last Updated: {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })} | Step-by-step startup guide

@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 
 import { getSiteStats } from '@/lib/site-stats';
 import { brand } from '@/config/brand';
+import { Indefinite, indefinite } from '@/lib/utils/indefinite-article';
 import { STAT_SOURCES } from '@/lib/stats-sources';
 import EmployerTrustSection from '@/components/EmployerTrustSection';
 import FeaturedJobsSection from '@/components/FeaturedJobsSection';
@@ -115,10 +116,10 @@ export default async function Home() {
             mainEntity: [
               {
                 "@type": "Question",
-                name: `What is a ${brand.niche.short}?`,
+                name: `What is ${indefinite(brand.niche.short)}?`,
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: `A ${brand.niche.short} (${brand.niche.long}) is an advanced practice registered nurse (APRN) who specializes in ${brand.niche.category} care. ${brand.niche.short}s — also called Psych NPs or behavioral health nurse practitioners — can diagnose and treat ${brand.niche.category} conditions, prescribe medications, and provide psychotherapy. They hold a Master's or Doctoral degree in ${brand.niche.adjective} nursing and are certified by the ANCC as PMHNP-BC.`,
+                  text: `${Indefinite(brand.niche.short)} (${brand.niche.long}) is an advanced practice registered nurse (APRN) who specializes in ${brand.niche.category} care. ${brand.niche.short}s — also called Psych NPs or behavioral health nurse practitioners — can diagnose and treat ${brand.niche.category} conditions, prescribe medications, and provide psychotherapy. They hold a Master's or Doctoral degree in ${brand.niche.adjective} nursing and are certified by the ANCC as PMHNP-BC.`,
                 },
               },
               {
@@ -142,10 +143,10 @@ export default async function Home() {
               },
               {
                 "@type": "Question",
-                name: `How long does it take to become a ${brand.niche.short}?`,
+                name: `How long does it take to become ${indefinite(brand.niche.short)}?`,
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: `Becoming a ${brand.niche.short} typically takes 6-8 years total: 4 years for a BSN, 1-2 years of RN experience (recommended), and 2-3 years for a MSN or DNP with ${brand.niche.short} specialization. Accelerated BSN-to-DNP programs can shorten this timeline. After graduation, you must pass the ANCC PMHNP-BC certification exam.`,
+                  text: `Becoming ${indefinite(brand.niche.short)} typically takes 6-8 years total: 4 years for a BSN, 1-2 years of RN experience (recommended), and 2-3 years for a MSN or DNP with ${brand.niche.short} specialization. Accelerated BSN-to-DNP programs can shorten this timeline. After graduation, you must pass the ANCC PMHNP-BC certification exam.`,
                 },
               },
               {
@@ -158,7 +159,7 @@ export default async function Home() {
               },
               {
                 "@type": "Question",
-                name: `What is the difference between a ${brand.niche.short} and a psychiatrist?`,
+                name: `What is the difference between ${indefinite(brand.niche.short)} and a psychiatrist?`,
                 acceptedAnswer: {
                   "@type": "Answer",
                   text: `${brand.niche.short}s hold a Master's or Doctoral degree in nursing with ${brand.niche.adjective} specialization (2–4 years of graduate school), while psychiatrists complete medical school plus a 4-year residency. Both can diagnose ${brand.niche.category} conditions and prescribe medications. In full practice authority states, ${brand.niche.short}s practice independently. ${brand.niche.short}s typically earn ${STAT_SOURCES.averageSalary.range} (${STAT_SOURCES.averageSalary.source}, ${STAT_SOURCES.averageSalary.asOf}) compared to psychiatrists at $250,000+, but ${brand.niche.short}s reach full practice much faster with less educational debt.`,
@@ -166,7 +167,7 @@ export default async function Home() {
               },
               {
                 "@type": "Question",
-                name: `What does a ${brand.niche.adjective} nurse practitioner do on a typical workday?`,
+                name: `What does ${indefinite(brand.niche.adjective)} nurse practitioner do on a typical workday?`,
                 acceptedAnswer: {
                   "@type": "Answer",
                   text: `A typical ${brand.niche.short} workday includes conducting psychiatric evaluations, diagnosing ${brand.niche.category} conditions (depression, anxiety, PTSD, bipolar disorder, schizophrenia), prescribing and managing psychotropic medications, providing psychotherapy (CBT, motivational interviewing), collaborating with interdisciplinary teams, and documenting in EHR systems. Outpatient ${brand.niche.short}s typically see 8-16 patients per day, while inpatient roles involve rounding on hospitalized patients.`,

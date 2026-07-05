@@ -1,4 +1,5 @@
 import { brand } from '@/config/brand';
+import { Indefinite, indefinite } from '@/lib/utils/indefinite-article';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -118,27 +119,27 @@ export default function FAQPage() {
 
   const careerFaqs = [
     {
-      question: `How long does it take to become a ${brand.niche.descriptor}?`,
-      answer: `Becoming a ${brand.niche.short} typically takes 6-8 years: 4 years for a BSN, 1-2 years of RN experience, and 2-3 years for an MSN or DNP with ${brand.niche.short} specialization. Accelerated BSN-to-DNP programs can shorten this timeline.`
+      question: `How long does it take to become ${indefinite(brand.niche.descriptor)}?`,
+      answer: `Becoming ${indefinite(brand.niche.short)} typically takes 6-8 years: 4 years for a BSN, 1-2 years of RN experience, and 2-3 years for an MSN or DNP with ${brand.niche.short} specialization. Accelerated BSN-to-DNP programs can shorten this timeline.`
     },
     {
-      question: `What educational background is required for a ${brand.niche.short} role?`,
+      question: `What educational background is required for ${indefinite(brand.niche.short)} role?`,
       answer: "You need a Bachelor of Science in Nursing (BSN), then a Master's (MSN) or Doctoral (DNP) degree with psychiatric-mental health specialization from a CCNE or ACEN accredited program. You must also pass the ANCC PMHNP-BC certification exam."
     },
     {
-      question: `What is the difference between a ${brand.niche.short} and a psychiatrist?`,
+      question: `What is the difference between ${indefinite(brand.niche.short)} and a psychiatrist?`,
       answer: `${brand.niche.short}s hold a Master's or Doctoral degree in nursing (2-4 years of graduate school), while psychiatrists complete medical school plus a 4-year residency. Both can diagnose and prescribe. In full practice authority states, ${brand.niche.short}s practice independently. ${brand.niche.short}s earn $155,000-$200,000+ vs psychiatrists' $250,000-$350,000+.`
     },
     {
-      question: `What is the difference between a ${brand.niche.short} and an FNP?`,
-      answer: `A ${brand.niche.short} (Psychiatric Mental Health NP) specializes in diagnosing and treating ${brand.niche.category} conditions across the lifespan, including prescribing psychotropic medications. An FNP (Family NP) provides primary care for all ages. ${brand.niche.short}s focus on psychiatric disorders, psychotherapy, and psychopharmacology, while FNPs handle general medical conditions.`
+      question: `What is the difference between ${indefinite(brand.niche.short)} and an FNP?`,
+      answer: `${Indefinite(brand.niche.short)} (Psychiatric Mental Health NP) specializes in diagnosing and treating ${brand.niche.category} conditions across the lifespan, including prescribing psychotropic medications. An FNP (Family NP) provides primary care for all ages. ${brand.niche.short}s focus on psychiatric disorders, psychotherapy, and psychopharmacology, while FNPs handle general medical conditions.`
     },
     {
-      question: `Can I complete a ${brand.niche.short} program online?`,
+      question: `Can I complete ${indefinite(brand.niche.short)} program online?`,
       answer: `Yes, many accredited universities offer online ${brand.niche.short} programs. Didactic coursework is completed online, but you'll still need to complete 500+ clinical hours in person at approved sites. Top online programs include Vanderbilt, Rush, and University of Cincinnati.`
     },
     {
-      question: `What is the ROI of a ${brand.niche.short} degree?`,
+      question: `What is the ROI of ${indefinite(brand.niche.short)} degree?`,
       answer: `The ROI is excellent. Graduate school costs $35,000-$80,000 for an MSN. ${brand.niche.short}s earn an average of $155,000+ — roughly $75,000 more per year than an RN. Most ${brand.niche.short}s pay off their graduate degree investment within 2-3 years of working.`
     },
     {
@@ -149,7 +150,7 @@ export default function FAQPage() {
 
   const salaryFaqs = [
     {
-      question: `What is the average salary of a ${brand.niche.adjective} nurse practitioner in the United States?`,
+      question: `What is the average salary of ${indefinite(brand.niche.adjective)} nurse practitioner in the United States?`,
       answer: `The average ${brand.niche.short} salary in 2026 is $155,000-$165,000 per year. New graduates start at $115,000-$145,000, while experienced ${brand.niche.short}s (7-15 years) earn $180,000-$210,000. Private practice owners can earn $200,000-$300,000+. The top 10% earn over $210,000 annually.`
     },
     {
@@ -161,11 +162,11 @@ export default function FAQPage() {
       answer: `${brand.niche.short}s are among the highest-paid NP specialties. They earn 10-20% more than Family NPs (average $120,000-$135,000) and comparable to Acute Care NPs. This premium reflects the critical shortage of ${brand.niche.category} providers and the specialized nature of ${brand.niche.adjective} care.`
     },
     {
-      question: `Does having a DNP vs MSN affect a ${brand.niche.short}'s salary?`,
+      question: `Does having a DNP vs MSN affect ${indefinite(brand.niche.short)}'s salary?`,
       answer: `In clinical roles, DNP and MSN ${brand.niche.short}s typically earn similar salaries — the degree itself rarely commands a higher clinical wage. However, DNP holders have advantages in academic positions, executive leadership roles, and may qualify for higher-tier positions in hospital systems.`
     },
     {
-      question: `How can you make the most money as a ${brand.niche.short}?`,
+      question: `How can you make the most money as ${indefinite(brand.niche.short)}?`,
       answer: "Top strategies include: owning a private practice ($200K-$300K+), specializing in high-demand areas like addiction (+15-20% premium) or forensic psychiatry (+15-25%), practicing in Full Practice Authority states (+12-15% premium), working locum tenens ($150K-$250K), and always negotiating total compensation."
     },
     {
@@ -176,15 +177,15 @@ export default function FAQPage() {
 
   const scopeFaqs = [
     {
-      question: `What is the scope of practice for a ${brand.niche.short}?`,
-      answer: `A ${brand.niche.short}'s scope of practice includes conducting psychiatric evaluations, diagnosing ${brand.niche.category} disorders (using DSM-5-TR criteria), prescribing psychotropic medications including controlled substances, providing psychotherapy (CBT, DBT, motivational interviewing), ordering and interpreting diagnostic tests, and managing treatment plans. The specific scope varies by state practice authority laws.`
+      question: `What is the scope of practice for ${indefinite(brand.niche.short)}?`,
+      answer: `${Indefinite(brand.niche.short)}'s scope of practice includes conducting psychiatric evaluations, diagnosing ${brand.niche.category} disorders (using DSM-5-TR criteria), prescribing psychotropic medications including controlled substances, providing psychotherapy (CBT, DBT, motivational interviewing), ordering and interpreting diagnostic tests, and managing treatment plans. The specific scope varies by state practice authority laws.`
     },
     {
       question: `What are the certification requirements for ${brand.niche.short} graduates?`,
       answer: `After graduating from an accredited ${brand.niche.short} program, you must pass the ANCC PMHNP-BC exam ($395), apply for state APRN licensure, obtain an NPI number, register with the DEA for prescriptive authority ($888/3 years), and create a CAQH ProView profile for insurance credentialing. Board certification must be renewed every 5 years with 75 CE hours.`
     },
     {
-      question: `What extra certifications can a ${brand.niche.short} get?`,
+      question: `What extra certifications can ${indefinite(brand.niche.short)} get?`,
       answer: `${brand.niche.short}s can pursue additional credentials including MAT/DATA waiver for addiction treatment, child and adolescent psychiatry specialization, addiction nursing certification (CARN-AP), forensic nursing certification, and geriatric psychiatry specialization. These certifications command 10-25% salary premiums.`
     },
     {

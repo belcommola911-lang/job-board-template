@@ -1,4 +1,5 @@
 import { brand } from '@/config/brand';
+import { indefinite } from '@/lib/utils/indefinite-article';
 import { LICENSE_GUIDE_SLUG_REGEX } from '@/config/niche/content-map';
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -167,7 +168,7 @@ export default async function ResourcesPage() {
         hasPart: [
           { '@type': 'Article', name: `${brand.niche.short} Full Practice Authority Guide`, url: `${brand.baseUrl}/resources/fpa-guide` },
           { '@type': 'Article', name: `1099 vs W2 for ${brand.niche.short}s — Compensation Comparison`, url: `${brand.baseUrl}/resources/1099-vs-w2` },
-          { '@type': 'Article', name: `How to Start a ${brand.niche.short} Private Practice`, url: `${brand.baseUrl}/resources/private-practice-guide` },
+          { '@type': 'Article', name: `How to Start ${indefinite(brand.niche.short)} Private Practice`, url: `${brand.baseUrl}/resources/private-practice-guide` },
         ],
         numberOfItems: 3,
       }) }} />

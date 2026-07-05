@@ -26,6 +26,7 @@ import { shouldRenderCategoryCity } from './render-gate';
 import { JOB_LISTING_OMIT } from './job-listing-omit';
 import { BEST_SORT_ORDER_BY } from '@/lib/utils/job-sort';
 import { brand } from '@/config/brand';
+import { indefinite } from '@/lib/utils/indefinite-article';
 import { licenseGuideSlug } from '@/config/niche/content-map';
 import { prisma } from '@/lib/prisma';
 import JobCard from '@/components/JobCard';
@@ -1635,7 +1636,7 @@ export default async function CategoryCityPage({ categoryKey, citySlug, page }: 
               },
               {
                 q: `What qualifications do I need for ${config.label.toLowerCase()} ${brand.niche.short} jobs in ${city!.name}?`,
-                a: `To work as a ${brand.niche.short} in ${city!.name}, ${city!.stateCode}, you need: (1) A Master's or Doctoral degree in psychiatric-mental health nursing, (2) National certification as a ${brand.niche.short} (ANCC-certified), (3) An active RN and APRN license in ${city!.state}, and (4) DEA registration for prescribing controlled substances. ${config.label === 'Entry-Level' ? 'Many entry-level positions accept new graduates and provide structured mentorship.' : config.label === 'Senior' ? 'Senior positions typically require 7+ years of experience and may require subspecialty certifications.' : `${config.label} positions may have additional requirements specific to the employer and setting.`}`,
+                a: `To work as ${indefinite(brand.niche.short)} in ${city!.name}, ${city!.stateCode}, you need: (1) A Master's or Doctoral degree in psychiatric-mental health nursing, (2) National certification as ${indefinite(brand.niche.short)} (ANCC-certified), (3) An active RN and APRN license in ${city!.state}, and (4) DEA registration for prescribing controlled substances. ${config.label === 'Entry-Level' ? 'Many entry-level positions accept new graduates and provide structured mentorship.' : config.label === 'Senior' ? 'Senior positions typically require 7+ years of experience and may require subspecialty certifications.' : `${config.label} positions may have additional requirements specific to the employer and setting.`}`,
               },
             ];
             return (
@@ -1714,7 +1715,7 @@ export default async function CategoryCityPage({ categoryKey, citySlug, page }: 
                 },
                 {
                   q: `What qualifications do I need for ${config.label.toLowerCase()} ${brand.niche.short} jobs?`,
-                  a: `To work as a ${brand.niche.short} in ${city!.name}, you need: a Master's or Doctoral degree in psychiatric-mental health nursing, ANCC PMHNP-BC certification, an active RN and APRN license in ${city!.state}, and DEA registration for prescribing controlled substances.`,
+                  a: `To work as ${indefinite(brand.niche.short)} in ${city!.name}, you need: a Master's or Doctoral degree in psychiatric-mental health nursing, ANCC PMHNP-BC certification, an active RN and APRN license in ${city!.state}, and DEA registration for prescribing controlled substances.`,
                 },
               ];
               return faqs.map((faq, i) => (

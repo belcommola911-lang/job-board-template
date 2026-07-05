@@ -4,29 +4,72 @@
  * Scans text content and auto-links relevant keywords to internal pages.
  * This extends the existing `autoLinkStates()` pattern from lib/blog.ts
  * to cover job categories, employment types, and career resources.
+ *
+ * PER-FORK NOTE: the matching patterns are built from `brand.niche` tokens
+ * (short + adjective), so they retarget automatically when a fork edits
+ * config/brand.ts. One residue remains: the colloquial 'psych NP' spelling
+ * (LEGACY_COLLOQUIAL_ROLE below) has no brand token to derive from — it is
+ * the reference niche's slang abbreviation, kept literal so matching on the
+ * template is unchanged. Forks should replace it with their own colloquial
+ * role spelling (or drop it); the niche-copy debt scanner counts it.
  */
 
 import { brand } from '@/config/brand';
 
+/** Escape a literal string for embedding in a RegExp. */
+function escapeRegex(value: string): string {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+/**
+ * Colloquial role spelling with no `brand.niche` source token (see the
+ * per-fork note in the file header). RegExp-source fragment, not a literal.
+ */
+const LEGACY_COLLOQUIAL_ROLE = 'psych\\s+NP';
+
+/**
+ * Alternation of the role spellings the auto-linker recognizes. Order and
+ * membership intentionally mirror the original hardcoded alternation
+ * (PMHNP|psychiatric|psych\s+NP) so matching behavior on the template is
+ * byte-identical: `brand.niche.medium` ('Psychiatric NP') is deliberately
+ * NOT added — the original patterns never matched that spelling, and adding
+ * it would change which phrases get linked.
+ */
+const NICHE_ROLE_ALTERNATION = [
+    escapeRegex(brand.niche.short),
+    escapeRegex(brand.niche.adjective),
+    LEGACY_COLLOQUIAL_ROLE,
+].join('|');
+
+const JOB_NOUN = '(?:jobs?|positions?|opportunities?)';
+
+/** `<qualifier> <role> jobs/positions/opportunities` matcher. */
+function nicheJobsPattern(qualifier: string): RegExp {
+    return new RegExp(
+        `\\b(${qualifier}\\s+(?:${NICHE_ROLE_ALTERNATION})\\s+${JOB_NOUN})\\b`,
+        'gi',
+    );
+}
+
 // Category keywords → internal page mappings
 const CATEGORY_LINKS: { pattern: RegExp; href: string; label: string }[] = [
     // Employment types
-    { pattern: /\b(remote\s+(?:PMHNP|psychiatric|psych\s+NP)\s+(?:jobs?|positions?|opportunities?))\b/gi, href: '/jobs/remote', label: `remote ${brand.niche.short} jobs` },
-    { pattern: /\b(telehealth\s+(?:PMHNP|psychiatric|psych\s+NP)\s+(?:jobs?|positions?|opportunities?))\b/gi, href: '/jobs/telehealth', label: `telehealth ${brand.niche.short} jobs` },
-    { pattern: /\b(travel\s+(?:PMHNP|psychiatric|psych\s+NP)\s+(?:jobs?|positions?|opportunities?))\b/gi, href: '/jobs/travel', label: `travel ${brand.niche.short} jobs` },
-    { pattern: /\b(per\s*[-\s]?diem\s+(?:PMHNP|psychiatric|psych\s+NP)\s+(?:jobs?|positions?|opportunities?))\b/gi, href: '/jobs/per-diem', label: `per diem ${brand.niche.short} jobs` },
-    { pattern: /\b(inpatient\s+(?:PMHNP|psychiatric|psych\s+NP)\s+(?:jobs?|positions?|opportunities?))\b/gi, href: '/jobs/inpatient', label: `inpatient ${brand.niche.short} jobs` },
-    { pattern: /\b(outpatient\s+(?:PMHNP|psychiatric|psych\s+NP)\s+(?:jobs?|positions?|opportunities?))\b/gi, href: '/jobs/outpatient', label: `outpatient ${brand.niche.short} jobs` },
+    { pattern: nicheJobsPattern('remote'), href: '/jobs/remote', label: `remote ${brand.niche.short} jobs` },
+    { pattern: nicheJobsPattern('telehealth'), href: '/jobs/telehealth', label: `telehealth ${brand.niche.short} jobs` },
+    { pattern: nicheJobsPattern('travel'), href: '/jobs/travel', label: `travel ${brand.niche.short} jobs` },
+    { pattern: nicheJobsPattern('per\\s*[-\\s]?diem'), href: '/jobs/per-diem', label: `per diem ${brand.niche.short} jobs` },
+    { pattern: nicheJobsPattern('inpatient'), href: '/jobs/inpatient', label: `inpatient ${brand.niche.short} jobs` },
+    { pattern: nicheJobsPattern('outpatient'), href: '/jobs/outpatient', label: `outpatient ${brand.niche.short} jobs` },
 
     // Specialties
-    { pattern: /\b(new\s*[-\s]?grad\s+(?:PMHNP|psychiatric|psych\s+NP)\s+(?:jobs?|positions?|opportunities?))\b/gi, href: '/jobs/new-grad', label: `new grad ${brand.niche.short} jobs` },
-    { pattern: /\b(child\s+(?:and\s+)?adolescent\s+(?:PMHNP|psychiatric|psych\s+NP)\s+(?:jobs?|positions?|opportunities?))\b/gi, href: '/jobs/child-adolescent', label: `child & adolescent ${brand.niche.short} jobs` },
-    { pattern: /\b(substance\s+abuse\s+(?:PMHNP|psychiatric|psych\s+NP)\s+(?:jobs?|positions?|opportunities?))\b/gi, href: '/jobs/substance-abuse', label: `substance abuse ${brand.niche.short} jobs` },
-    { pattern: /\b(addiction\s+(?:PMHNP|psychiatric|psych\s+NP)\s+(?:jobs?|positions?|opportunities?))\b/gi, href: '/jobs/addiction', label: `addiction ${brand.niche.short} jobs` },
+    { pattern: nicheJobsPattern('new\\s*[-\\s]?grad'), href: '/jobs/new-grad', label: `new grad ${brand.niche.short} jobs` },
+    { pattern: nicheJobsPattern('child\\s+(?:and\\s+)?adolescent'), href: '/jobs/child-adolescent', label: `child & adolescent ${brand.niche.short} jobs` },
+    { pattern: nicheJobsPattern('substance\\s+abuse'), href: '/jobs/substance-abuse', label: `substance abuse ${brand.niche.short} jobs` },
+    { pattern: nicheJobsPattern('addiction'), href: '/jobs/addiction', label: `addiction ${brand.niche.short} jobs` },
 
     // Resources
-    { pattern: /\b(PMHNP\s+salary\s+(?:guide|data|information|comparison))\b/gi, href: '/salary-guide', label: `${brand.niche.short} salary guide` },
-    { pattern: /\b(PMHNP\s+job\s+alerts?)\b/gi, href: '/job-alerts', label: `${brand.niche.short} job alerts` },
+    { pattern: new RegExp(`\\b(${escapeRegex(brand.niche.short)}\\s+salary\\s+(?:guide|data|information|comparison))\\b`, 'gi'), href: '/salary-guide', label: `${brand.niche.short} salary guide` },
+    { pattern: new RegExp(`\\b(${escapeRegex(brand.niche.short)}\\s+job\\s+alerts?)\\b`, 'gi'), href: '/job-alerts', label: `${brand.niche.short} job alerts` },
 ];
 
 // Link limit per article to avoid over-optimization
