@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { brand } from '@/config/brand';
 import { prisma } from '@/lib/prisma';
 import { verifyExtensionToken } from '@/lib/verify-extension-token';
 import { rateLimit, RATE_LIMITS } from '@/lib/rate-limit';
@@ -71,7 +72,7 @@ Write a compelling, professional cover letter (3-4 paragraphs). Use first person
                 messages: [
                     {
                         role: 'system',
-                        content: 'You are a professional career coach specializing in PMHNP (Psychiatric Mental Health Nurse Practitioner) career services. Write polished, compelling cover letters.',
+                        content: `You are a professional career coach specializing in ${brand.niche.short} (${brand.niche.long}) career services. Write polished, compelling cover letters.`,
                     },
                     { role: 'user', content: prompt },
                 ],

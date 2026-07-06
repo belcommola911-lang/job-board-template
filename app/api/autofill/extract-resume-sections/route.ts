@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { brand } from '@/config/brand';
 import { prisma } from '@/lib/prisma';
 import { verifyExtensionToken } from '@/lib/verify-extension-token';
 import { mintResumeReadUrl, extractRequestContext } from '@/lib/resume-storage';
@@ -189,7 +190,7 @@ async function extractResumeText(resumeUrl: string): Promise<string> {
 // ─── Prompts ───
 
 function systemPrompt(): string {
-    return `You are an expert data extraction AI for healthcare professional resumes (PMHNP - Psychiatric Mental Health Nurse Practitioners).
+    return `You are an expert data extraction AI for healthcare professional resumes (${brand.niche.short} - ${brand.niche.long}s).
 
 Your task is to extract STRUCTURED data from resume text and return it as valid JSON.
 

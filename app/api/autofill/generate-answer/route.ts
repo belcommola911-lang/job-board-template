@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { brand } from '@/config/brand';
 import { prisma } from '@/lib/prisma';
 import { verifyExtensionToken } from '@/lib/verify-extension-token';
 import { rateLimit, RATE_LIMITS } from '@/lib/rate-limit';
@@ -206,7 +207,7 @@ function buildProfileContext(profile: any): string {
 }
 
 function systemPrompt(): string {
-    return `You are an expert career coach and professional writer specializing in Psychiatric Mental Health Nurse Practitioner (PMHNP) job applications. 
+    return `You are an expert career coach and professional writer specializing in ${brand.niche.long} (${brand.niche.short}) job applications.
 
 Your task is to generate professional, compelling responses to job application questions. 
 

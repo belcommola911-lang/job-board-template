@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { brand } from '@/config/brand';
 import { prisma } from '@/lib/prisma';
 import { verifyExtensionToken } from '@/lib/verify-extension-token';
 import { rateLimit, RATE_LIMITS } from '@/lib/rate-limit';
@@ -293,7 +294,7 @@ export function buildProfileContext(profile: any): string {
 // ─── Prompts ───
 
 function systemPrompt(): string {
-    return `You are an expert AI assistant for PMHNP (Psychiatric Mental Health Nurse Practitioner) job applications.
+    return `You are an expert AI assistant for ${brand.niche.short} (${brand.niche.long}) job applications.
 
 Your task is to classify unknown form fields AND provide the best answer/value based on the candidate's profile and resume.
 
