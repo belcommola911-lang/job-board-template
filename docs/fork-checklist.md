@@ -39,10 +39,13 @@
    keywords — the quality-critical one), copy.ts, content-map.ts, stats.ts
    (EMPTY the fallback employers!), credentials.ts, regulatory.ts, plus
    `lib/aggregators/search-terms/*` and `lib/aggregators/tenants/*`.
-10. **Regenerate crons** — edit `config/cron-schedule.ts` for your source mix,
+10. **Re-theme the palette** — `npm run retheme -- <your-palette.json>`
+    (dry-run by default, `--apply` to write), then work the MANUAL REVIEW
+    list the script prints. See "Re-theming the palette" below.
+11. **Regenerate crons** — edit `config/cron-schedule.ts` for your source mix,
     then `npm run crons:generate` (never hand-edit vercel.json's crons; a
     drift test enforces this).
-11. **Run the preflight** — `npm run fork:preflight` must exit 0 before launch.
+12. **Run the preflight** — `npm run fork:preflight` must exit 0 before launch.
     Full operational sequence: `docs/pilot-fork-runbook.md`.
 
 ## What carries over for free
@@ -98,6 +101,12 @@ $EDITOR config/brand.ts
 #    /public/logo.png, /public/favicon-*.png, /public/apple-touch-icon.png
 #    /public/og-default.png, /public/site.webmanifest
 
+# 3b. Re-theme the brand palette (template teal → your palette)
+cp docs/examples/palette-deep-berry.json my-palette.json
+$EDITOR my-palette.json                    # keep the role keys, change the hexes
+npm run retheme -- my-palette.json         # dry-run: per-file counts + verification
+npm run retheme -- my-palette.json --apply # write, then work the printed MANUAL REVIEW list
+
 # 4. Set up the new database
 #    Create a fresh Supabase project for the new fork
 #    Update DATABASE_URL + DIRECT_URL in Vercel env
@@ -133,6 +142,52 @@ npm run dev
 #    Visit /, /privacy, /sub-processors, /security, /data-request,
 #    /do-not-sell, /jobs. Confirm brand swapped everywhere visible.
 ```
+
+## Re-theming the palette
+
+The template's rendered UI is teal (`#0D9488` family) end to end. A fork
+swaps the whole family in one pass with the palette codemod
+(`scripts/retheme.ts`):
+
+```bash
+npm run retheme -- docs/examples/palette-deep-berry.json           # dry-run (default)
+npm run retheme -- docs/examples/palette-deep-berry.json --apply   # write the changes
+```
+
+- The target palette is a JSON file in ROLE form — `primary`, `primaryDark`,
+  `primaryDeep`, `primaryLight`, `pale`, `paleLight`, `chipLight`, `chip`,
+  `chipTint`, `tint` — copy `docs/examples/palette-deep-berry.json` (the
+  teal→deep-berry mapping used by the NP Hiring pilot) and change the hexes.
+- Scope: `.ts`/`.tsx`/`.css` under `app/`, `components/`, `lib/`, plus
+  `public/site.webmanifest`. Hex matching is case-insensitive; `rgb()`/
+  `rgba()` tints of the primary family keep their alpha and comma spacing.
+  A post-run verification pass reports any surviving old-palette values,
+  and the run prints per-file change counts.
+- Every run ends with a **MANUAL REVIEW list** the codemod deliberately
+  does not automate — work through it after `--apply`:
+  1. **Teal+emerald brand gradients** — where the old primary was paired
+     with `#10B981`/`#059669`, make BOTH stops the new brand
+     (primary → primaryDark). Emerald used ALONE for success states stays
+     green.
+  2. **OG routes' dark-canvas accents** (`app/api/og/*`) — the
+     `rgba(16,185,129,X)` dot texture → your primaryLight triplet (keep
+     alpha), `#10B981` text accents → your pale hex.
+  3. **Email V2 palette object** (`lib/email-templates-v2.ts`,
+     `app/api/email-preview/v2-templates.ts`) — values are swapped but the
+     key names (`teal`, `tealButton`), button-gradient pairing, and MSO
+     fallbacks need a human pass; regenerate email imagery too.
+  4. **Widget CSS variables** (`app/widget/route.ts`) — `--pd-teal*` values
+     are swapped; the names are embed-facing API, keep them.
+  5. **Out of scope**: `config/` niche packs (e.g. `config/niche/stats.ts`
+     accents) and binary `/public` assets — handle with the niche-pack and
+     asset steps above.
+- Never touch: cream/ink/peach neutrals, amber `featured`, red error, blue
+  info, per-category pastel hero `bgColor`s (e.g. `#a0c3d6`), semantic
+  success greens, third-party brand colors.
+
+The replacement engine is unit-tested (`tests/lib/retheme.test.ts`). The
+template itself stays teal — running the codemod with the template's own
+palette is a verified no-op.
 
 ## Things to NOT change per fork
 

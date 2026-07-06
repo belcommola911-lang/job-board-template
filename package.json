@@ -53,7 +53,8 @@
     "backfill:experience:dev": "ts-node -r tsconfig-paths/register --project scripts/tsconfig.json scripts/backfill-experience.ts --env=dev",
     "recs:run": "ts-node -r tsconfig-paths/register --project scripts/tsconfig.json scripts/run-recommendations.ts",
     "seed:test-candidates": "ts-node -r tsconfig-paths/register --project scripts/tsconfig.json scripts/seed-test-candidates.ts",
-    "fork:preflight": "ts-node -r tsconfig-paths/register --project scripts/tsconfig.json scripts/fork-preflight.ts"
+    "fork:preflight": "ts-node -r tsconfig-paths/register --project scripts/tsconfig.json scripts/fork-preflight.ts",
+    "retheme": "ts-node --project scripts/tsconfig.json scripts/retheme.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

@@ -1,0 +1,16 @@
+{
+    "name": "deep-berry",
+    "description": "Example target palette for `npm run retheme` (scripts/retheme.ts) — the teal→deep-berry mapping used by the NP Hiring pilot fork. Copy this file, keep the role keys, change the hex values. Roles mirror TEMPLATE_PALETTE: primary #0D9488, primaryDark #0F766E, primaryDeep #115E59+#134E4A, primaryLight #14B8A6, pale #2DD4BF, paleLight #5EEAD4, chipLight #99F6E4, chip #B2F5EA, chipTint #CCFBF1, tint #F0FDFA. rgb()/rgba() tints are derived from the role hexes automatically (alpha preserved).",
+    "roles": {
+        "primary": "#BE185D",
+        "primaryDark": "#9D174D",
+        "primaryDeep": "#831843",
+        "primaryLight": "#DB2777",
+        "pale": "#F472B6",
+        "paleLight": "#F9A8D4",
+        "chipLight": "#FBCFE8",
+        "chip": "#FBCFE8",
+        "chipTint": "#FCE7F3",
+        "tint": "#FDF2F8"
+    }
+}

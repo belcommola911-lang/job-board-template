@@ -52,6 +52,9 @@ Work through in this order; each is one file unless noted:
 9. Replace `/public` brand assets (logo, favicons, OG default, manifest,
    llms.txt/humans.txt/ai.txt regenerated with TRUE numbers — a new board
    has 0 jobs, don't ship inherited claims).
+10. Re-theme the palette: `npm run retheme -- <your-palette.json>` (dry-run,
+    then `--apply`) and work the printed manual-review list — see
+    docs/fork-checklist.md § Re-theming the palette.
 
 ## 3. Content pack (the real cost, ~1–3 weeks, parallelizable with §4)
 
