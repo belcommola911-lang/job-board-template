@@ -140,7 +140,10 @@ const RULES: Partial<Record<CategoryTag, CategoryRule>> = {
             (j.jobType || '').toLowerCase().includes('contract'),
     },
     'per-diem': {
-        keywords: ['per diem', 'per-diem', 'PRN'],
+        // 'prn' MUST stay boundary-anchored: bare 'prn' is a substring of
+        // 'APRN', which appears in most postings on any nursing board —
+        // an unanchored form mass-mistags per-diem (found on the NP fork).
+        keywords: ['per diem', 'per-diem', ' prn', '(prn', '/prn', '-prn'],
         structural: (j) =>
             (j.jobType || '').toLowerCase().includes('per diem'),
     },
@@ -247,7 +250,11 @@ export function classifyJobTags(job: ClassifiableJob): CategoryTag[] {
         }
 
         const matchDesc = rule.matchDescription !== false;
-        const haystack = matchDesc ? `${titleLower} ${descLower}` : titleLower;
+        // Space-padded at both ends so boundary-anchored keywords (' prn',
+        // ' fnp', ' cns ') also match at the very start/end of the text —
+        // without the pad, anchored abbreviations silently miss titles that
+        // begin or end with them.
+        const haystack = ` ${matchDesc ? `${titleLower} ${descLower}` : titleLower} `;
         for (const kw of rule.keywords) {
             if (matchesKeyword(haystack, kw)) {
                 tagged.add(slug);

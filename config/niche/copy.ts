@@ -79,16 +79,17 @@ export const OG_HOMEPAGE_SUBHEADLINE =
  * Stats row along the bottom of the homepage OG image
  * (app/api/og/route.tsx).
  *
- * FORK NOTE: these numbers are HARDCODED MARKETING CLAIMS, not live
- * counts. They MUST be re-authored per board (a new board has 0 jobs on
- * day one) and should ideally be made data-driven later — the cached
- * counters in lib/site-stats.ts already exist for exactly this kind of
- * number.
+ * RULE: NO inventory counts here. OG images are CDN-cached for 30 days,
+ * so a hardcoded job/company count is stale the moment inventory moves —
+ * underselling when small, a false claim when inflated. Use evergreen
+ * claims only (coverage, cadence, price). If a board wants live counts
+ * on its OG image, wire lib/site-stats.ts cached counters into the OG
+ * route instead of putting numbers in this file.
  */
 export const OG_HOMEPAGE_STATS = [
-    { number: '10,000+', label: 'PMHNP Jobs' },
-    { number: '3,000+', label: 'Companies' },
-    { number: '50', label: 'States' },
+    { number: '50', label: 'States Covered' },
+    { number: 'Daily', label: 'Job Updates' },
+    { number: 'Free', label: 'For Job Seekers' },
 ] as const;
 
 /**
