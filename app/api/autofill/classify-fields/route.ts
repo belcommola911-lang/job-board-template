@@ -1,3 +1,6 @@
+    export const dynamic = 'force-dynamic'
+    export const runtime = 'edge'
+
 import { NextRequest, NextResponse } from 'next/server';
 import { brand } from '@/config/brand';
 import { prisma } from '@/lib/prisma';
